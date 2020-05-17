@@ -76,6 +76,9 @@
   </ImportGroup>
   <ItemGroup>
     <ClCompile Include="game_analyzer.cpp" />
+    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="scanner.cpp" />
+    <ClCompile Include="server-update.c" />
     <None Include="Makefile" />
     <None Include="debug.mak" />
     <None Include="release.mak" />
