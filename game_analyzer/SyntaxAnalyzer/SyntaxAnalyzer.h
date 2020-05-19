@@ -11,18 +11,18 @@ class SyntaxAnalyzer
 	//should be shared_ptr
 	lexem_list* _lexems;
 
-	static const char * const _control_keywords[];
-	static const char * const _functions_0p[];
-	static const char * const _functions_1p[];
-	static const char * const _functions_2p[];
+	static const char * const _control_keywords[2];
+	static const char * const _functions_0p[2];
+	static const char * const _functions_1p[3];
+	static const char * const _functions_2p[2];
 	static const char * _function_print;
 	
-	static const char * const _assign[];
-	static const char * const _binary_operators[];
-	static const char * const _unary_operators[];
-	static const char * const _delims[];
+	static const char * const _assign[1];
+	static const char * const _binary_operators[8];
+	static const char * const _unary_operators[2];
+	static const char * const _delims[3];
 
-	static const char _identifiers[];
+	static const char _identifiers[2];
 
 	static const char * _start;
 	static const char * _finish;
@@ -37,9 +37,9 @@ class SyntaxAnalyzer
 
 	void ExpectString(const char* s1);
 
-	bool InArray(const char* s, const char* const * arr);
+	bool InArray(const char* s, const char* const * arr, int sz);
 
-	bool InArray(char s, const char* arr);
+	bool InArray(char s, const char* arr, int sz);
 
 	bool IsVariable() { return _lexems->word[0] == '$'; }
 
@@ -65,6 +65,10 @@ class SyntaxAnalyzer
 	void While();
 	
 public:
+	SyntaxAnalyzer()
+	{
+		printf("%d %d\n", sizeof(_functions_1p)/sizeof(_functions_1p[0]), sizeof(_unary_operators)/sizeof(_unary_operators[0]));
+	}
 	void Analyze(lexem_list* lexems);
 };
 
