@@ -1,9 +1,12 @@
 #pragma once
-#include <cstdio>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
 
+#include <cstdio>
+#include <cstdlib>
+#include <fcntl.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include "shared.h"
 
 enum lexem
 {
@@ -11,29 +14,15 @@ enum lexem
 	identifier,
 	literal,
 	separator,
-	operation,
 	num,
 	defect
 };
 
-enum states
-{
-	home,
-	indent,
-	numb,
-	com,
-	oper,
-	// liter,
-	err
-};
-
-
 struct lexem_list
 {
-	char *word = NULL;
-	int line;
-
+	char *word;
 	lexem type;
+	int line;
 	lexem_list *next;
 
 	void Print()
@@ -47,23 +36,50 @@ struct lexem_list
 
 class LexAnalyzer
 {
-	bool all;
-	bool liter;
+	enum states
+	{
+		home,
+		indent,
+		keywd,
+		numb,
+		com,
+		liter,
+		err
+	};
+	struct item
+	{
+		char q;
+		item *next;
+	};
+	bool rep;
 	states flag;
-	char *word;
+	item *lex;
 	int line;
 	lexem_list *first;
-	
 private:
+	void handler_home(char c);
+	void handler_indent(char c);
+	void handler_keywd(char c);
+	void handler_numb(char c);
+	void handler_com(char c);
+	void add(const char c);
+	void add_lex(lexem type);
+	int len_lex();
+	char* word_lex();
+	bool is_keywd();
+	void clean_item();
+	void handler_liter(char c);
+	void clean_lexem();
+
+
+	//    lexem_list *push(){return first;}
+public:
 	LexAnalyzer();
 	~LexAnalyzer();
-	void handler_home(const char c);
-	void handler_indent(const char c);
-	void handler_numb(const char c);
-	void handler_com(const char c);
-	void handler_oper(const char c);
-	// void handler_liter(const char c);
-	void clean_lexem();
-public:
-	void step(const char c);
+	void step(char c);
+
+
+
+	lexem_list *push() { return first; }
+	bool state_home() { return (flag == home); }
 };
