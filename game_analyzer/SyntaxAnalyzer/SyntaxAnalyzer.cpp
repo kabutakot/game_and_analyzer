@@ -51,8 +51,10 @@ void SyntaxAnalyzer::Block()
 		if (IsVariable())
 		{
 			Next();
-			//delete this possibly
-			B1();
+			ExpectString(":=");
+
+			Next();
+			Statement();
 
 			ExpectString(";");
 			Next();
@@ -78,15 +80,7 @@ void SyntaxAnalyzer::Block()
 	Next();
 }
 
-void SyntaxAnalyzer::B1()
-{
-	ExpectString(":=");
-
-	Next();
-	C1();
-}
-
-void SyntaxAnalyzer::C1()
+void SyntaxAnalyzer::Statement()
 {
 	do
 	{
@@ -98,7 +92,7 @@ void SyntaxAnalyzer::C1()
 		if (_lexems->word[0] == '(')
 		{
 			Next();
-			C1();
+			Statement();
 
 			ExpectString(")");
 			Next();
@@ -169,7 +163,7 @@ void SyntaxAnalyzer::Functions1()
 {
 	ExpectString("(");
 	Next();
-	C1();
+	Statement();
 	ExpectString(")");
 	Next();
 }
@@ -178,9 +172,9 @@ void SyntaxAnalyzer::Functions2()
 {
 	ExpectString("(");
 	Next();
-	C1();
+	Statement();
 	ExpectString(",");
-	C1();
+	Statement();
 	ExpectString(")");
 	Next();
 }
@@ -199,7 +193,7 @@ void SyntaxAnalyzer::PrintFunction()
 		}
 		else 
 		{
-			C1();
+			Statement();
 		}
 	} while (strcmp(_lexems->word, ","));
 	
@@ -212,7 +206,7 @@ void SyntaxAnalyzer::ControlFunctions()
 	Next();
 	ExpectString("(");
 	Next();
-	C1();
+	Statement();
 	ExpectString(")");
 	Next();
 	Block();

@@ -34,61 +34,24 @@ class SyntaxAnalyzer
 	{
 		_lexems = _lexems->next;
 	}
-	
-	void ExpectString(const char* s1)
-	{
-		if (strcmp(_lexems->word, s1))
-		{
-			char err[100] = {0};
-			sprintf(err, "lexem: %s, expected: %s", _lexems->word, s1);
-			throw Error(err, *_lexems);
-		}
-	}
 
-	bool InArray(const char* s, const char * const * arr)
-	{
-		//test this shit
-		for (int i = 0; i < sizeof(arr); i++)
-		{
-			if (!strcmp(s, arr[i]))
-				return true;
-		}
-		return false;
-	}
+	void ExpectString(const char* s1);
 
-	bool InArray(char s, const char * arr)
-	{
-		//test this shit
-		for (int i = 0; i < sizeof(arr); i++)
-		{
-			if (s == arr[i])
-				return true;
-		}
-		return false;
-	}
+	bool InArray(const char* s, const char* const * arr);
 
-	bool IsVariable()
-	{
-		return _lexems->word[0] == '$';
-	}
+	bool InArray(char s, const char* arr);
 
-	bool IsFunction()
-	{
-		return _lexems->word[0] == '?';
-	}
+	bool IsVariable() { return _lexems->word[0] == '$'; }
 
-	bool IsPrintFunction()
-	{
-		return !strcmp(_lexems->word, _function_print);
-	}
+	bool IsFunction() { return _lexems->word[0] == '?'; }
+
+	bool IsPrintFunction() { return !strcmp(_lexems->word, _function_print); }
 
 
 	void Start();
-	void A();
 	void Block();
-	void B1();
 	//за проверку правильного разделителя отвечает вызывающий эту функцию
-	void C1();
+	void Statement();
 	void Functions();
 
 	void Functions0();
