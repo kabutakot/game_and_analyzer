@@ -261,6 +261,7 @@ void LexAnalyzer::step(char c)
 	{
 		rep = false;
 		step(c);
+		return;
 	}
 	if (c == '\n')
 	{

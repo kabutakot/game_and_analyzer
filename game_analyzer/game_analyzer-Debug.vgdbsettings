@@ -34,6 +34,7 @@
       </FileMasks>
       <TransferNewFilesOnly>true</TransferNewFilesOnly>
       <IncludeSubdirectories>true</IncludeSubdirectories>
+      <SelectedDirectories />
       <DeleteDisappearedFiles>true</DeleteDisappearedFiles>
       <ApplyGlobalExclusionList>true</ApplyGlobalExclusionList>
       <Extension>
@@ -152,11 +153,10 @@
             <Value>en_US.UTF-8</Value>
           </Record>
         </Records>
-        <EnvironmentSetupFiles />
       </GDBEnvironment>
       <DebuggedProgram>$(TargetPath)</DebuggedProgram>
       <GDBServerPort>2000</GDBServerPort>
-      <ProgramArguments />
+      <ProgramArguments>/home/s02170100/unix/build/text.txt</ProgramArguments>
     </LaunchGDBSettings>
     <GenerateCtrlBreakInsteadOfCtrlC>false</GenerateCtrlBreakInsteadOfCtrlC>
     <X11WindowMode>Local</X11WindowMode>
