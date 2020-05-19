@@ -10,6 +10,7 @@
 #include <time.h>
 #include "LexAnalyzer/LexAnalyzer.h"
 #include "shared.h"
+#include "SyntaxAnalyzer/SyntaxAnalyzer.h"
 
 //#define INBUFSIZE 1024
 //#define FINISH 0
@@ -1666,11 +1667,16 @@ void start(int fd) {
 		if (rc != -1)
 			R.step(c);
 	}
+	R.step(' ');
 	data = R.push();
 	Print_lex_list(data);
 	if (!R.at_home()) {
 		fprintf(stderr, "Automat was not returned to <Home>\n");
+		//throw "Error!!";
 	}
+
+	SyntaxAnalyzer syntax;
+	syntax.Analyze(data);
 }
 
 int main(int argc, char **argv)
@@ -1685,7 +1691,19 @@ int main(int argc, char **argv)
 		perror("Error in open to read");
 		exit(1);
 	}
-	start(fd);
+
+	try
+	{
+		start(fd);
+	}
+	catch(Error& err)
+	{
+		err.Print();
+	}
+	catch(const char * s)
+	{
+		printf(s);
+	}
 	close(fd);
 	return 0;
 }

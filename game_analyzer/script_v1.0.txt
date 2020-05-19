@@ -1,0 +1,9 @@
+start
+{
+	$var1 = 15 + ($var2 + ?prod(0)) * 15;
+	if ($a < $b) 
+	{
+		print ("OOOOPS!!!");
+	}
+}
+finish
