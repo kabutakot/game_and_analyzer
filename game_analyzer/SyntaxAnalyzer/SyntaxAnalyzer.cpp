@@ -20,6 +20,38 @@ const char   SyntaxAnalyzer::_identifiers[] = { '$', '?' };
 const char * SyntaxAnalyzer::_start = "start";
 const char * SyntaxAnalyzer::_finish = "finish";
 
+void SyntaxAnalyzer::ExpectString(const char* s1)
+{
+	if (strcmp(_lexems->word, s1))
+	{
+		char err[100] = {0};
+		sprintf(err, "lexem: %s, expected: %s", _lexems->word, s1);
+		throw Error(err, *_lexems);
+	}
+}
+
+bool SyntaxAnalyzer::InArray(const char* s, const char* const* arr)
+{
+	//test this shit
+	for (int i = 0; i < sizeof(arr); i++)
+	{
+		if (!strcmp(s, arr[i]))
+			return true;
+	}
+	return false;
+}
+
+bool SyntaxAnalyzer::InArray(char s, const char* arr)
+{
+	//test this shit
+	for (int i = 0; i < sizeof(arr); i++)
+	{
+		if (s == arr[i])
+			return true;
+	}
+	return false;
+}
+
 void SyntaxAnalyzer::Start()
 {
 	ExpectString(_start);
