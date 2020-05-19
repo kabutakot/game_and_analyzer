@@ -27,10 +27,8 @@ struct lexem_list
 
 	void Print()
 	{
-		if (word != NULL)
-			printf("Line: %d, lexem: %s\n", line, word);
-		else
-			printf("Line: %d, empty_lexem!\n", line);
+		if (word != 0)
+			fprintf(stderr, "Line: %d, lexem: %s\n", line, word);
 	}
 };
 

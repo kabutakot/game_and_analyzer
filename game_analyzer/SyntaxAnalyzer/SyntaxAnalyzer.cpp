@@ -230,10 +230,9 @@ void SyntaxAnalyzer::PrintFunction()
 {
 	Next();
 	ExpectString("(");
-	Next();
-	
 	do
 	{
+		Next();
 		if (IsLiteral())
 		{
 			Next();
