@@ -32,7 +32,10 @@ struct lexem_list
 		else
 			printf("Line: %d, empty_lexem!\n", line);
 	}
+	
+//	void clean_lexem();
 };
+
 
 class LexAnalyzer
 {
@@ -81,5 +84,5 @@ public:
 
 
 	lexem_list *push() { return first; }
-	bool state_home() { return (flag == home); }
+	bool at_home() { return (flag == home); }
 };
