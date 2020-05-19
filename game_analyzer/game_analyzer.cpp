@@ -1628,30 +1628,51 @@
 //	return 0;
 //}
 //
+
+void Print_no_liter(lexem_list *first)
+{
+		fprintf(stderr, "%s ", first->word);
+}
+
+void Print_liter(lexem_list *first)
+{
+	for (int i = 1; first->word[i + 1] != '\0'; i++)
+	{
+		fprintf(stderr, "%c", first->word[i]);
+	}
+	fprintf(stderr, " ");
+}
+
 void  Print_lex_list(lexem_list *first)
 {
 	lexem_list *lex;
 	lex = first;
 	while (lex) {
 		fprintf(stderr, "%i  ", lex->line);
-		fprintf(stderr, "%s ", lex->word);
+//		fprintf(stderr, "%s ", lex->word);
 		switch (lex->type) {
 		case keyword:
+			Print_no_liter(lex);
 			fprintf(stderr, "keyword\n");
 			break;
 		case identifier:
+			Print_no_liter(lex);
 			fprintf(stderr, "identifier\n");
 			break;
 		case literal:
+			Print_liter(lex);
 			fprintf(stderr, "literal\n");
 			break;
 		case num:
+			Print_no_liter(lex);
 			fprintf(stderr, "number\n");
 			break;
 		case separator :
+			Print_no_liter(lex);
 			fprintf(stderr, "separator\n");
 			break;
 		case defect:
+			Print_no_liter(lex);
 			fprintf(stderr, "defect\n");
 		}
 		lex = lex->next;
@@ -1696,13 +1717,13 @@ int main(int argc, char **argv)
 	{
 		start(fd);
 	}
-	catch(Error& err)
+	catch (Error& err)
 	{
 		err.Print();
 	}
-	catch(const char * s)
+	catch (const char * s)
 	{
-		printf(s);
+		fprintf(stderr, "%c", s);
 	}
 	close(fd);
 	return 0;

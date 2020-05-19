@@ -1,11 +1,23 @@
 #include "LexAnalyzer.h"
 
+bool InArray(const char s, const char* arr, int sz)
+{
+	for (int i = 0; i < sz; i++)
+	{
+		if (s==arr[i])
+			return true;
+	}
+	return false;
+}
+
 bool is_separator(const char c)
 {
-	bool t1 = (c == '+' || c == '-' || c == '*' || c == '/');
-	bool t2 = (c == '(' || c == ')' || c == '{' || c == '}' || c == '#' || c == ';' || c == ',');
-	bool t3 = (c == '&' || c == '|' || c == '!' || c == '>' || c == '<' || c == '=');
-	return t1 || t2 || t3;
+	const char sep1[] = { '+', '-', '*', '/' };
+	const char sep2[] = { '(', ')', '{', '}', '#', ';', ',' };
+	const char sep3[] = { '&', '|', '!', '>', '<', '=' };
+	return InArray(c, sep1, sizeof(sep1) / sizeof(sep1[0])) ||
+		   InArray(c, sep2, sizeof(sep2) / sizeof(sep2[0])) ||
+		   InArray(c, sep3, sizeof(sep3) / sizeof(sep3[0]));
 }
 
 void LexAnalyzer::clean_item()
@@ -19,16 +31,16 @@ void LexAnalyzer::clean_item()
 	}
 }
 
-//void lexem_list::clean_lexem()
-//{
-//	lexem_list *p;
-//	while (lex)
-//	{
-//		p = lex;
-//		lex = lex->next;
-//		delete p;
-//	}
-//}
+void LexAnalyzer::clean_lexem()
+{
+	lexem_list *p;
+	while (lex)
+	{
+		p = first;
+		first = first->next;
+		delete p;
+	}
+}
 
 LexAnalyzer::LexAnalyzer()
 {
@@ -42,8 +54,9 @@ LexAnalyzer::LexAnalyzer()
 LexAnalyzer::~LexAnalyzer()
 {
 	clean_item();
-//	clean_lexem();
+	clean_lexem();
 }
+
 bool LexAnalyzer::is_keywd()
 {
 	char *wd = word_lex();
@@ -150,6 +163,7 @@ void LexAnalyzer::handler_home(char c)
 	}
 	if (c == '"')
 	{
+		add(c);
 		flag = liter;
 		return;
 	}
@@ -237,6 +251,7 @@ void LexAnalyzer::handler_liter(char c)
 {
 	if (c == '"')
 	{
+		add(c);
 		add_lex(literal);
 		flag = home;
 	}

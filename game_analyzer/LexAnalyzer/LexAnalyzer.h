@@ -32,8 +32,6 @@ struct lexem_list
 		else
 			printf("Line: %d, empty_lexem!\n", line);
 	}
-	
-//	void clean_lexem();
 };
 
 
@@ -59,6 +57,7 @@ class LexAnalyzer
 	item *lex;
 	int line;
 	lexem_list *first;
+	
 private:
 	void handler_home(char c);
 	void handler_indent(char c);
@@ -71,18 +70,12 @@ private:
 	char* word_lex();
 	bool is_keywd();
 	void clean_item();
-	void handler_liter(char c);
 	void clean_lexem();
-
-
-	//    lexem_list *push(){return first;}
+	void handler_liter(char c);
 public:
 	LexAnalyzer();
 	~LexAnalyzer();
 	void step(char c);
-
-
-
 	lexem_list *push() { return first; }
 	bool at_home() { return (flag == home); }
 };
