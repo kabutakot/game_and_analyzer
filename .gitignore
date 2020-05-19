@@ -9,3 +9,5 @@ game_analyzer/game_analyzer.vcxproj.filters
 
 game_analyzer/game_analyzer.vcxproj.user
 
+
+game_analyzer/VisualGDBCache/*
