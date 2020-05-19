@@ -157,6 +157,7 @@ void SyntaxAnalyzer::Statement()
 		if (InArray(_lexems->word, _binary_operators, sizeof(_binary_operators)/sizeof(_binary_operators[0])))
 		{
 			Next();
+			continue;
 		}
 		
 	} while (!InArray(_lexems->word, _delims, sizeof(_delims)/sizeof(_delims[0])));

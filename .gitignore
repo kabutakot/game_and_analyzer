@@ -13,3 +13,12 @@ game_analyzer/game_analyzer\.vcxproj\.user
 game_analyzer/VisualGDBCache/*
 game_analyzer/CodeDB/*
 game_analyzer/game_analyzer-Debug\.vgdbsettings
+
+game_analyzer/gcc_Debug*
+
+game_analyzer/game_analyzer-Debug\.vgdbsettings\.Александра\.user
+game_analyzer/game_analyzer-Debug\.vgdbsettings
+
+game_analyzer/debug\.mak\.old
+
+game_analyzer/game_analyzer-Debug\.vgdbsettings
