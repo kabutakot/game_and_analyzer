@@ -4,7 +4,7 @@ bool is_separator(const char c)
 {
 	bool t1 = (c == '+' || c == '-' || c == '*' || c == '/');
 	bool t2 = (c == '(' || c == ')' || c == '{' || c == '}' || c == '#' || c == ';');
-	bool t3 = (c == '&' || c == '|' || c == '!' || c == '>' || c == '>' || c == '=');
+	bool t3 = (c == '&' || c == '|' || c == '!' || c == '>' || c == '<' || c == '=');
 	return t1 || t2 || t3;
 }
 
@@ -40,7 +40,8 @@ bool LexAnalyzer::is_keywd()
 	static const char str2[] = "while";
 	static const char str3[] = "start";
 	static const char str4[] = "finish";
-	return(!cmpstr(wd, str1) || !cmpstr(wd, str2) || !cmpstr(wd, str3) || !cmpstr(wd, str4));
+	static const char str5[] = "print";
+	return (!cmpstr(wd, str1) || !cmpstr(wd, str2) || !cmpstr(wd, str3) || !cmpstr(wd, str4) || !cmpstr(wd, str5));
 }
 
 void LexAnalyzer::add(const char c)
