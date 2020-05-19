@@ -1632,26 +1632,26 @@ void output(lexem_list *q)
 {
 	while (q) {
 		switch (q->type) {
-		case keyword:
-			fprintf(stderr, "keyword     ");
-			break;
-		case identifier:
-			fprintf(stderr, "identifier  ");
-			break;
-		case literal:
-			fprintf(stderr, "literal     ");
-			break;
-		case num:
-			fprintf(stderr, "number    ");
-			break;
+			case keyword:
+				fprintf(stderr, "keyword     ");
+				break;
+			case identifier:
+				fprintf(stderr, "identifier  ");
+				break;
+			case literal:
+				fprintf(stderr, "literal     ");
+				break;
+			case num:
+				fprintf(stderr, "number    ");
+				break;
 			//            case operation:
 			//                fprintf(stderr,"operation   ");
 			//                break;
-			            case separator :
-			                fprintf(stderr, "separator  ");
-			break;
-		case defect:
-			fprintf(stderr, "defect      ");
+			case separator :
+			    fprintf(stderr, "separator  ");
+				break;
+			case defect:
+				fprintf(stderr, "defect      ");
 		}
 		fprintf(stderr, "%i  ", q->line);
 		fprintf(stderr, "%s\n", q->word);
