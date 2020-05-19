@@ -165,6 +165,8 @@ void LexAnalyzer::handler_indent(char c)
 {
 	if ((len_lex() == 1) && (c<'a' || c>'z') && (c<'A' || c>'Z'))
 	{
+		add(c);
+		add_lex(defect);
 		flag = err;
 		return;
 	}
@@ -261,6 +263,7 @@ void LexAnalyzer::step(char c)
 	{
 		rep = false;
 		step(c);
+		return;
 	}
 	if (c == '\n')
 	{
