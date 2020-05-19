@@ -1507,7 +1507,7 @@ void close_server(struct session *data, int ls)
 	exit(0);
 }
 
-void handler()
+void handler(int)
 {
 	server_status = FINISH;
 }
@@ -1597,7 +1597,7 @@ void init(int port, int count)
 		exit(1);
 	}
 	srand(time(NULL));
-	signal(SIGINT, reinterpret_cast<__sighandler_t>(handler));
+	signal(SIGINT, handler);
 	signal(SIGPIPE, SIG_IGN);
 	fprintf(stderr, "server is running\n");
 	start(ls, count);
