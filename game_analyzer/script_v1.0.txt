@@ -6,5 +6,7 @@ start
 		print("OOOOPS!!!");
 	}
 	
+	$v a
+	
 }
 finish
