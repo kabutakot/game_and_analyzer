@@ -10,7 +10,7 @@ const char * const SyntaxAnalyzer::_functions_1p[] = { "player", "prod", "build"
 const char * const SyntaxAnalyzer::_functions_2p[] = { "buy", "sell" };
 const char * SyntaxAnalyzer::_function_print = "print";
 
-const char * const SyntaxAnalyzer::_assign[] = { ":=" };
+const char * const SyntaxAnalyzer::_assign[] = { "=" };
 const char * const SyntaxAnalyzer::_binary_operators[] = { ">", "<", "+", "-", "*", "/", "&", "|" };
 const char * const SyntaxAnalyzer::_unary_operators[] = { "-", "!" };
 const char * const SyntaxAnalyzer::_delims[] = { ")", ";", "," };

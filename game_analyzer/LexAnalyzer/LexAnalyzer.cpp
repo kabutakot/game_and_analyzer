@@ -121,7 +121,7 @@ void LexAnalyzer::add_lex(lexem type)
 
 void LexAnalyzer::handler_home(char c)
 {
-	if (c == ' ' || c == '\n' || c == '\t')
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\r')
 	{
 		return;
 	}
