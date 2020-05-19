@@ -1667,6 +1667,7 @@ void start(int fd) {
 		if (rc != -1)
 			R.step(c);
 	}
+	R.step(' ');
 	data = R.push();
 	Print_lex_list(data);
 	if (!R.at_home()) {

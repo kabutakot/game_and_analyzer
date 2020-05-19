@@ -65,10 +65,6 @@ class SyntaxAnalyzer
 	void While();
 	
 public:
-	SyntaxAnalyzer()
-	{
-		printf("%d %d\n", sizeof(_functions_1p)/sizeof(_functions_1p[0]), sizeof(_unary_operators)/sizeof(_unary_operators[0]));
-	}
 	void Analyze(lexem_list* lexems);
 };
 

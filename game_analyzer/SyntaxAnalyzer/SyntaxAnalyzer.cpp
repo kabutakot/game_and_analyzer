@@ -70,6 +70,10 @@ void SyntaxAnalyzer::Start()
 		}
 		throw "Lexems after \"finish\" keyword";
 	}
+	else
+	{
+		printf("Syntax Analyzer success!\n");
+	}
 }
 
 void SyntaxAnalyzer::Block()
