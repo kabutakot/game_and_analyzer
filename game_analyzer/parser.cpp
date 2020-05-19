@@ -3,6 +3,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include "shared.h"
+
 enum marker{
     identifier,
     keyword,
@@ -101,11 +103,7 @@ public:
     void Analyze();
 };
 
-bool cmpstr(const char *str1,const char *str2);
-
 char *dupstr(const char *str);
-
-int lenstr(const char *str);
 
 Error::Error(const char *str)
 {
@@ -720,26 +718,6 @@ bool Parser::IsLex(const char *str)
     return (!cmpstr(cur_lex->word,str));
 }
 
-bool cmpstr(const char *str1,const char *str2)
-{
-    int i=0,len=lenstr(str1);
-    if (str1&&str2){
-        if (len==lenstr(str2)){
-            while (i<=len){
-                if (str1[i]!=str2[i])
-                    return true;
-                i++;
-            }
-        }
-        else{
-            return true;
-        }
-    }
-    else{
-        return true;
-    }
-    return false;
-}
 
 char *dupstr(const char *str)
 {
@@ -751,18 +729,6 @@ char *dupstr(const char *str)
     copy[i]='\0';
     return copy;
 }   
-
-int lenstr(const char *str)
-{
-    int i=0,length=0;
-    if (str){
-        while (str[i]!='\0'){
-            length++;
-            i++;
-        }
-    }
-    return length;
-}
 
 void CleanLex(LexItem *first)
 {

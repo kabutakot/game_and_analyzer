@@ -14,9 +14,6 @@
 #ifndef __FLT32X_MAX_EXP__
 #define __FLT32X_MAX_EXP__ 1024
 #endif
-#ifndef __cpp_attributes
-#define __cpp_attributes 200809
-#endif
 #ifndef __UINT_LEAST16_MAX__
 #define __UINT_LEAST16_MAX__ 0xffff
 #endif
@@ -31,9 +28,6 @@
 #endif
 #ifndef __GCC_IEC_559_COMPLEX
 #define __GCC_IEC_559_COMPLEX 2
-#endif
-#ifndef __cpp_aggregate_nsdmi
-#define __cpp_aggregate_nsdmi 201304
 #endif
 #ifndef __UINT_LEAST8_TYPE__
 #define __UINT_LEAST8_TYPE__ unsigned char
@@ -52,9 +46,6 @@
 #endif
 #ifndef __FLT32_MIN_EXP__
 #define __FLT32_MIN_EXP__ (-125)
-#endif
-#ifndef __cpp_static_assert
-#define __cpp_static_assert 200410
 #endif
 #ifndef __ORDER_LITTLE_ENDIAN__
 #define __ORDER_LITTLE_ENDIAN__ 1234
@@ -107,9 +98,6 @@
 #ifndef __x86_64
 #define __x86_64 1
 #endif
-#ifndef __cpp_variadic_templates
-#define __cpp_variadic_templates 200704
-#endif
 #ifndef __UINT_FAST64_MAX__
 #define __UINT_FAST64_MAX__ 0xffffffffffffffffUL
 #endif
@@ -122,9 +110,6 @@
 #ifndef __FINITE_MATH_ONLY__
 #define __FINITE_MATH_ONLY__ 0
 #endif
-#ifndef __cpp_variable_templates
-#define __cpp_variable_templates 201304
-#endif
 #ifndef __GNUC_PATCHLEVEL__
 #define __GNUC_PATCHLEVEL__ 1
 #endif
@@ -133,9 +118,6 @@
 #endif
 #ifndef __UINT_FAST8_MAX__
 #define __UINT_FAST8_MAX__ 0xff
-#endif
-#ifndef __cpp_rvalue_reference
-#define __cpp_rvalue_reference 200610
 #endif
 #ifndef __DEC64_MAX_EXP__
 #define __DEC64_MAX_EXP__ 385
@@ -181,9 +163,6 @@
 #endif
 #ifndef __UINT32_MAX__
 #define __UINT32_MAX__ 0xffffffffU
-#endif
-#if !defined(__GXX_EXPERIMENTAL_CXX0X__) && defined(__SYSPROGS_CODESENSE__)
-#define __GXX_EXPERIMENTAL_CXX0X__ 1
 #endif
 #ifndef __LDBL_MAX_EXP__
 #define __LDBL_MAX_EXP__ 16384
@@ -320,9 +299,6 @@
 #ifndef __MMX__
 #define __MMX__ 1
 #endif
-#ifndef __cpp_delegating_constructors
-#define __cpp_delegating_constructors 200604
-#endif
 #ifndef __FLT_HAS_DENORM__
 #define __FLT_HAS_DENORM__ 1
 #endif
@@ -332,9 +308,6 @@
 #ifndef __BIGGEST_ALIGNMENT__
 #define __BIGGEST_ALIGNMENT__ 16
 #endif
-#ifndef __STDC_UTF_16__
-#define __STDC_UTF_16__ 1
-#endif
 #ifndef __FLT64_MAX_10_EXP__
 #define __FLT64_MAX_10_EXP__ 308
 #endif
@@ -343,9 +316,6 @@
 #endif
 #ifndef __DBL_MAX__
 #define __DBL_MAX__ double(1.79769313486231570814527423731704357e+308L)
-#endif
-#ifndef __cpp_raw_strings
-#define __cpp_raw_strings 200710
 #endif
 #ifndef __INT_FAST32_MAX__
 #define __INT_FAST32_MAX__ 0x7fffffffffffffffL
@@ -368,16 +338,16 @@
 #ifndef __INT_FAST16_TYPE__
 #define __INT_FAST16_TYPE__ long int
 #endif
+#ifndef __STRICT_ANSI__
+#define __STRICT_ANSI__ 1
+#endif
 #ifndef __LDBL_HAS_DENORM__
 #define __LDBL_HAS_DENORM__ 1
 #endif
 //VS2005-2012 treats all files as C++, while VS2013+ can treat C files correctly.
 #if defined(_MSC_VER) && (_MSC_VER < 1800 || defined(__cplusplus))
 #undef __cplusplus
-#define __cplusplus 201402L
-#endif
-#ifndef __cpp_ref_qualifiers
-#define __cpp_ref_qualifiers 200710
+#define __cplusplus 199711L
 #endif
 #ifndef __DEC128_MAX__
 #define __DEC128_MAX__ 9.999999999999999999999999999999999E6144DL
@@ -390,9 +360,6 @@
 #endif
 #ifndef __DEPRECATED
 #define __DEPRECATED 1
-#endif
-#ifndef __cpp_rvalue_references
-#define __cpp_rvalue_references 200610
 #endif
 #ifndef __DBL_MAX_EXP__
 #define __DBL_MAX_EXP__ 1024
@@ -433,9 +400,6 @@
 #ifndef __SIZEOF_SIZE_T__
 #define __SIZEOF_SIZE_T__ 8
 #endif
-#ifndef __cpp_nsdmi
-#define __cpp_nsdmi 200809
-#endif
 #ifndef __FLT64X_MIN_EXP__
 #define __FLT64X_MIN_EXP__ (-16381)
 #endif
@@ -444,9 +408,6 @@
 #endif
 #ifndef __LONG_LONG_WIDTH__
 #define __LONG_LONG_WIDTH__ 64
-#endif
-#ifndef __cpp_initializer_lists
-#define __cpp_initializer_lists 200806
 #endif
 #ifndef __FLT32_MAX_EXP__
 #define __FLT32_MAX_EXP__ 128
@@ -465,9 +426,6 @@
 #endif
 #ifndef __FLT_MIN_EXP__
 #define __FLT_MIN_EXP__ (-125)
-#endif
-#ifndef __cpp_lambdas
-#define __cpp_lambdas 200907
 #endif
 #ifndef __FLT64X_HAS_QUIET_NAN__
 #define __FLT64X_HAS_QUIET_NAN__ 1
@@ -523,14 +481,8 @@
 #ifndef __VERSION__
 #define __VERSION__ "9.2.1 20190827 (Red Hat 9.2.1-1)"
 #endif
-#ifndef __cpp_unicode_characters
-#define __cpp_unicode_characters 200704
-#endif
 #ifndef _STDC_PREDEF_H
 #define _STDC_PREDEF_H 1
-#endif
-#ifndef __cpp_decltype_auto
-#define __cpp_decltype_auto 201304
 #endif
 #ifndef __GCC_ATOMIC_INT_LOCK_FREE
 #define __GCC_ATOMIC_INT_LOCK_FREE 2
@@ -577,9 +529,6 @@
 #ifndef __FLT64X_HAS_INFINITY__
 #define __FLT64X_HAS_INFINITY__ 1
 #endif
-#ifndef unix
-#define unix 1
-#endif
 #ifndef __DBL_HAS_DENORM__
 #define __DBL_HAS_DENORM__ 1
 #endif
@@ -595,14 +544,14 @@
 #ifndef __UINT64_MAX__
 #define __UINT64_MAX__ 0xffffffffffffffffUL
 #endif
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 #ifndef __FLT64X_DIG__
 #define __FLT64X_DIG__ 18
 #endif
 #ifndef __INT8_TYPE__
 #define __INT8_TYPE__ signed char
-#endif
-#ifndef __cpp_digit_separators
-#define __cpp_digit_separators 201309
 #endif
 #ifndef __ELF__
 #define __ELF__ 1
@@ -621,9 +570,6 @@
 #endif
 #ifndef __GNUC_RH_RELEASE__
 #define __GNUC_RH_RELEASE__ 1
-#endif
-#ifndef __GLIBCXX_BITSIZE_INT_N_0
-#define __GLIBCXX_BITSIZE_INT_N_0 128
 #endif
 #ifndef __k8
 #define __k8 1
@@ -678,9 +624,6 @@
 #endif
 #ifndef __FLT_HAS_INFINITY__
 #define __FLT_HAS_INFINITY__ 1
-#endif
-#ifndef __cpp_unicode_literals
-#define __cpp_unicode_literals 200710
 #endif
 #ifndef __UINT_FAST16_TYPE__
 #define __UINT_FAST16_TYPE__ long unsigned int
@@ -748,15 +691,6 @@
 #ifndef __INTPTR_MAX__
 #define __INTPTR_MAX__ 0x7fffffffffffffffL
 #endif
-#ifndef __cpp_sized_deallocation
-#define __cpp_sized_deallocation 201309
-#endif
-#ifndef linux
-#define linux 1
-#endif
-#ifndef __cpp_range_based_for
-#define __cpp_range_based_for 200907
-#endif
 #ifndef __FLT64_HAS_QUIET_NAN__
 #define __FLT64_HAS_QUIET_NAN__ 1
 #endif
@@ -787,9 +721,6 @@
 #ifndef __code_model_small__
 #define __code_model_small__ 1
 #endif
-#ifndef __cpp_return_type_deduction
-#define __cpp_return_type_deduction 201304
-#endif
 #ifndef __k8__
 #define __k8__ 1
 #endif
@@ -813,9 +744,6 @@
 #endif
 #ifndef __DEC64_MIN_EXP__
 #define __DEC64_MIN_EXP__ (-382)
-#endif
-#ifndef __cpp_decltype
-#define __cpp_decltype 200707
 #endif
 #ifndef __FLT32_DECIMAL_DIG__
 #define __FLT32_DECIMAL_DIG__ 9
@@ -852,9 +780,6 @@
 #endif
 #ifndef __DBL_MANT_DIG__
 #define __DBL_MANT_DIG__ 53
-#endif
-#ifndef __cpp_inheriting_constructors
-#define __cpp_inheriting_constructors 201511
 #endif
 #ifndef __SIZEOF_FLOAT128__
 #define __SIZEOF_FLOAT128__ 16
@@ -928,9 +853,6 @@
 #ifndef __FLT64X_MIN__
 #define __FLT64X_MIN__ 3.36210314311209350626267781732175260e-4932F64x
 #endif
-#ifndef __GNUC_STDC_INLINE__
-#define __GNUC_STDC_INLINE__ 1
-#endif
 #ifndef __FLT64_HAS_DENORM__
 #define __FLT64_HAS_DENORM__ 1
 #endif
@@ -939,9 +861,6 @@
 #endif
 #ifndef __DBL_DECIMAL_DIG__
 #define __DBL_DECIMAL_DIG__ 17
-#endif
-#ifndef __STDC_UTF_32__
-#define __STDC_UTF_32__ 1
 #endif
 #ifndef __INT_FAST8_WIDTH__
 #define __INT_FAST8_WIDTH__ 8
@@ -964,9 +883,6 @@
 #ifndef __INTMAX_MAX__
 #define __INTMAX_MAX__ 0x7fffffffffffffffL
 #endif
-#ifndef __cpp_alias_templates
-#define __cpp_alias_templates 200704
-#endif
 #ifndef __BYTE_ORDER__
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
 #endif
@@ -987,9 +903,6 @@
 #endif
 #ifndef __FLT_MAX__
 #define __FLT_MAX__ 3.40282346638528859811704183484516925e+38F
-#endif
-#ifndef __cpp_constexpr
-#define __cpp_constexpr 201304
 #endif
 #ifndef __INT32_TYPE__
 #define __INT32_TYPE__ int
@@ -1024,9 +937,6 @@
 #ifndef __GNUC_MINOR__
 #define __GNUC_MINOR__ 2
 #endif
-#ifndef __GLIBCXX_TYPE_INT_N_0
-#define __GLIBCXX_TYPE_INT_N_0 __int128
-#endif
 #ifndef __INT_FAST16_WIDTH__
 #define __INT_FAST16_WIDTH__ 64
 #endif
@@ -1044,9 +954,6 @@
 #endif
 #ifndef __LDBL_DENORM_MIN__
 #define __LDBL_DENORM_MIN__ 3.64519953188247460252840593361941982e-4951L
-#endif
-#ifndef __cpp_generic_lambdas
-#define __cpp_generic_lambdas 201304
 #endif
 #ifndef __STDC__
 #define __STDC__ 1
@@ -1087,9 +994,6 @@
 #ifndef __SIZEOF_LONG_LONG__
 #define __SIZEOF_LONG_LONG__ 8
 #endif
-#ifndef __cpp_user_defined_literals
-#define __cpp_user_defined_literals 200809
-#endif
 #ifndef __FLT128_DECIMAL_DIG__
 #define __FLT128_DECIMAL_DIG__ 36
 #endif
@@ -1108,6 +1012,9 @@
 #ifndef __UINT_FAST16_MAX__
 #define __UINT_FAST16_MAX__ 0xffffffffffffffffUL
 #endif
+#ifndef __GNUC_GNU_INLINE__
+#define __GNUC_GNU_INLINE__ 1
+#endif
 #ifndef __GCC_ATOMIC_SHORT_LOCK_FREE
 #define __GCC_ATOMIC_SHORT_LOCK_FREE 2
 #endif
@@ -1120,21 +1027,16 @@
 #ifndef _GNU_SOURCE
 #define _GNU_SOURCE 1
 #endif
-#ifndef __cpp_init_captures
-#define __cpp_init_captures 201304
-#endif
 #ifndef __ATOMIC_ACQ_REL
 #define __ATOMIC_ACQ_REL 4
 #endif
 #ifndef __ATOMIC_RELEASE
 #define __ATOMIC_RELEASE 3
 #endif
-#ifndef DEBUG
-#define DEBUG 1
-#endif
 #endif
 
 // --- Include directories begin --- //
+//
 ///usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9
 ///usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/x86_64-redhat-linux
 ///usr/lib/gcc/x86_64-redhat-linux/9/../../../../include/c++/9/backward
