@@ -19,6 +19,17 @@ void LexAnalyzer::clean_item()
 	}
 }
 
+//void lexem_list::clean_lexem()
+//{
+//	lexem_list *p;
+//	while (lex)
+//	{
+//		p = lex;
+//		lex = lex->next;
+//		delete p;
+//	}
+//}
+
 LexAnalyzer::LexAnalyzer()
 {
 	rep = false;
@@ -31,7 +42,7 @@ LexAnalyzer::LexAnalyzer()
 LexAnalyzer::~LexAnalyzer()
 {
 	clean_item();
-	//    clean_lexem();
+//	clean_lexem();
 }
 bool LexAnalyzer::is_keywd()
 {

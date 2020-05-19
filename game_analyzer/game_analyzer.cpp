@@ -1627,35 +1627,33 @@
 //	return 0;
 //}
 //
-
-void output(lexem_list *q)
+void  Print_lex_list(lexem_list *first)
 {
-	while (q) {
-		switch (q->type) {
-			case keyword:
-				fprintf(stderr, "keyword     ");
-				break;
-			case identifier:
-				fprintf(stderr, "identifier  ");
-				break;
-			case literal:
-				fprintf(stderr, "literal     ");
-				break;
-			case num:
-				fprintf(stderr, "number    ");
-				break;
-			//            case operation:
-			//                fprintf(stderr,"operation   ");
-			//                break;
-			case separator :
-			    fprintf(stderr, "separator  ");
-				break;
-			case defect:
-				fprintf(stderr, "defect      ");
+	lexem_list *lex;
+	lex = first;
+	while (lex) {
+		fprintf(stderr, "%i  ", lex->line);
+		fprintf(stderr, "%s ", lex->word);
+		switch (lex->type) {
+		case keyword:
+			fprintf(stderr, "keyword\n");
+			break;
+		case identifier:
+			fprintf(stderr, "identifier\n");
+			break;
+		case literal:
+			fprintf(stderr, "literal\n");
+			break;
+		case num:
+			fprintf(stderr, "number\n");
+			break;
+		case separator :
+			fprintf(stderr, "separator\n");
+			break;
+		case defect:
+			fprintf(stderr, "defect\n");
 		}
-		fprintf(stderr, "%i  ", q->line);
-		fprintf(stderr, "%s\n", q->word);
-		q = q->next;
+		lex = lex->next;
 	}
 }
 
@@ -1669,8 +1667,8 @@ void start(int fd) {
 			R.step(c);
 	}
 	data = R.push();
-	output(data);
-	if (!R.state_home()) {
+	Print_lex_list(data);
+	if (!R.at_home()) {
 		fprintf(stderr, "Automat was not returned to <Home>\n");
 	}
 }
