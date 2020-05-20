@@ -34,27 +34,14 @@ class TcpMarketDataServer
 	static const int MAX_EPOLL_EVENTS = 100;
 	static const int BACK_LOG = 100;
 	static const int PAYLOAD_SIZE = 1540;
-	const std::string kSendMsg = "Send";
-	const std::string kEndMsg = "End";
-	const std::string kStartFix = "8=FIX.4.4";
-	struct
-	{
-		uint16_t blockLength;
-		uint16_t templateId;
-		uint16_t schemaId;
-		uint16_t version;
-	} const kStartTwimeNew = {46, 6000, 19781, 2}, kStartTwimeReplace = {41, 6003, 19781, 2};
 
 	std::string _bind_address;
 	int _bind_port;
-	int _listen_fd, _main_fd = -1;
+	int _listen_fd;
 	std::vector <int> _auxiliary_fd;
 	std::string _message_remainder;
 	int _epoll_fd;
 
-	std::vector<std::string> _stored_packets;
-	std::vector<std::string> _fpga_packets;
-	int send_count = 0, recv_count = 0;
 	ServerState _current_state = ServerState::WAITING;
 
 

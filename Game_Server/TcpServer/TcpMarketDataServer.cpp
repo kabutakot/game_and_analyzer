@@ -1,9 +1,31 @@
 ﻿#include "TcpMarketDataServer.h"
-#include <onload/extensions.h>
 #include <netinet/ip.h>
 #include <algorithm>
-#include <Shared/Common/StringHelper.h>
+#include <cstring>
+#include <unistd.h>
 
+
+#define TRY(x)                                                  \
+  do {                                                          \
+    int __rc = (x);                                             \
+    if( __rc < 0 ) {                                            \
+      fprintf(stderr, "ERROR: TRY(%s) failed\n", #x);           \
+      fprintf(stderr, "ERROR: at %s:%d\n", __FILE__, __LINE__); \
+      fprintf(stderr, "ERROR: rc=%d errno=%d (%s)\n",           \
+              __rc, errno, strerror(errno));                    \
+      abort();                                                  \
+    }                                                           \
+  } while( 0 )
+
+
+#define TEST(x)                                                 \
+  do {                                                          \
+    if( ! (x) ) {                                               \
+      fprintf(stderr, "ERROR: TEST(%s) failed\n", #x);          \
+      fprintf(stderr, "ERROR: at %s:%d\n", __FILE__, __LINE__); \
+      abort();                                                  \
+    }                                                           \
+  } while( 0 )
 
 void TcpMarketDataServer::SetNonBlocking(int fd)
 {
@@ -172,7 +194,7 @@ void TcpMarketDataServer::ReadSocket(int fd)
 	msg.msg_namelen = 0;
 	msg.msg_control = cmsg_buf;
 	msg.msg_controllen = sizeof(cmsg_buf);
-	msg.msg_flags = 0; /* work-around for onload bug57094 */
+	msg.msg_flags = 0;
 	int rc = recvmsg(fd, &msg, MSG_DONTWAIT);
 	//Sstd::cout << (char*)msg.msg_iov->iov_base;
 
@@ -186,8 +208,6 @@ void TcpMarketDataServer::ReadSocket(int fd)
 		rc = recvmsg(fd, &msg, MSG_DONTWAIT);
 	}
 
-	//auto str = StringHelper::DumpToHex(&res[0], res.size());
-	//fmt::print("ReadSocekt() {}\n", str);
 	ParseMessage(fd, res);
 
 }
@@ -475,7 +495,6 @@ void TcpMarketDataServer::Run()
 				int one;
 				int fd;
 				TRY(fd = accept(_listen_fd, (struct sockaddr*) &client_addr, &client));
-				onload_move_fd(fd);
 				TRY(setsockopt(fd, SOL_TCP, TCP_NODELAY, &one, sizeof(one)));
 
 				// Добавление клиентского дескриптора в массив ожидания
@@ -484,17 +503,7 @@ void TcpMarketDataServer::Run()
 				conn_event.events = EPOLLIN | EPOLLRDHUP;
 				if (epoll_ctl(_epoll_fd, EPOLL_CTL_ADD, fd, &conn_event) < 0)
 				{
-					close(_main_fd);
 					continue;
-				}
-
-				if (_main_fd == -1)
-				{
-					_main_fd = fd;
-				}
-				else
-				{
-					_auxiliary_fd.push_back(fd);
 				}
 			}
 			// Готов клиентский дескриптор
@@ -513,7 +522,9 @@ void TcpMarketDataServer::Run()
 				}
 
 				if (events[n].events & EPOLLIN)
+				{
 					ReadSocket(fd);
+				}
 			}
 		}
 	}
