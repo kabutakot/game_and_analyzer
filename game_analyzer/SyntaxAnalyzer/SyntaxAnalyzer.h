@@ -19,7 +19,7 @@ class SyntaxAnalyzer
 	
 	static const char * const _assign[1];
 	static const char * const _binary_operators[8];
-	static const char * const _unary_operators[2];
+	static const char * const _unary_operators[3];
 	static const char * const _delims[3];
 
 	static const char _identifiers[2];
@@ -44,8 +44,12 @@ class SyntaxAnalyzer
 	bool IsVariable() { return _lexems->word[0] == '$'; }
 
 	bool IsFunction() { return _lexems->word[0] == '?'; }
+	
+	bool IsNum() { return _lexems->word[0] >= '0' && _lexems->word[0] <= '9'; }
 
-	bool IsPrintFunction() { return !strcmp(_lexems->word, _function_print); }
+	bool IsPrintFunction() { return !cmpstr(_lexems->word, _function_print); }
+	
+	bool IsLiteral() { return _lexems->word[0] == '"'; }
 
 
 	void Start();

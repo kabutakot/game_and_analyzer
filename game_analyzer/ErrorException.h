@@ -16,11 +16,17 @@ public:
 		memset(_error_mess, 0, 150);
 		memcpy(_error_mess, error_mess, sz);
 	}
+	
+	Error(const char * error_mess, int sz)
+	{
+		memset(_error_mess, 0, 150);
+		memcpy(_error_mess, error_mess, sz);
+	}
 
 	void Print()
 	{
-		printf("Caught exception!\n");
-		printf(_error_mess);
+		fprintf(stderr, "Caught exception!\n");
+		fprintf(stderr, "%s", _error_mess);
 		_error_lexem.Print();
 	}
 };

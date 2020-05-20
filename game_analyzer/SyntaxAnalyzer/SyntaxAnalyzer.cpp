@@ -1,7 +1,7 @@
 
 #include "SyntaxAnalyzer.h"
 
-#include <cstring>
+//#include <cstring>
 
 
 const char * const SyntaxAnalyzer::_control_keywords[] = { "if", "while" };
@@ -12,7 +12,7 @@ const char * SyntaxAnalyzer::_function_print = "print";
 
 const char * const SyntaxAnalyzer::_assign[] = { "=" };
 const char * const SyntaxAnalyzer::_binary_operators[] = { ">", "<", "+", "-", "*", "/", "&", "|" };
-const char * const SyntaxAnalyzer::_unary_operators[] = { "-", "!" };
+const char * const SyntaxAnalyzer::_unary_operators[] = { "=", "-", "!" };
 const char * const SyntaxAnalyzer::_delims[] = { ")", ";", "," };
 
 const char   SyntaxAnalyzer::_identifiers[] = { '$', '?' };
@@ -22,11 +22,20 @@ const char * SyntaxAnalyzer::_finish = "finish";
 
 void SyntaxAnalyzer::ExpectString(const char* s1)
 {
-	if (strcmp(_lexems->word, s1))
+	
+	if (_lexems==0 || cmpstr(_lexems->word, s1))
 	{
 		char err[100] = {0};
-		sprintf(err, "lexem: %s, expected: %s\n", _lexems->word, s1);
-		throw Error(err, 100, *_lexems);
+		if (_lexems!=0)
+		{
+			fprintf(stderr, "lexem: %s, expected: %s\n", _lexems->word, s1);
+			throw Error(err, 100, *_lexems);
+		}
+		else
+		{
+			fprintf(stderr, "no lexem , expected: %s\n", s1);
+			throw Error(err, 100);
+		}
 	}
 }
 
@@ -35,7 +44,7 @@ bool SyntaxAnalyzer::InArray(const char* s, const char* const* arr, int sz)
 	//test this shit
 	for (int i = 0; i < sz; i++)
 	{
-		if (!strcmp(s, arr[i]))
+		if (!cmpstr(s, arr[i]))
 			return true;
 	}
 	return false;
@@ -61,10 +70,10 @@ void SyntaxAnalyzer::Start()
 
 	ExpectString(_finish);
 	Next();
-	if (_lexems != NULL)
+	if (_lexems != 0)
 	{
-		printf("Lexems after \"finish\" keyword");
-		while (_lexems != NULL)
+		fprintf(stderr, "Lexems after \"finish\" keyword");
+		while (_lexems != 0)
 		{
 			_lexems->Print();
 		}
@@ -72,7 +81,7 @@ void SyntaxAnalyzer::Start()
 	}
 	else
 	{
-		printf("Syntax Analyzer success!\n");
+		fprintf(stderr, "Syntax Analyzer success!\n");
 	}
 }
 
@@ -81,7 +90,7 @@ void SyntaxAnalyzer::Block()
 	ExpectString("{");
 	Next();
 	
-	while (strcmp(_lexems->word, "}"))
+	while (cmpstr(_lexems->word, "}"))
 	{
 		//write
 		if (IsVariable())
@@ -143,7 +152,7 @@ void SyntaxAnalyzer::Statement()
 		{
 			Functions();
 		}
-		else if (_lexems->type == num)
+		else if (IsNum())
 		{
 			Next();
 		}
@@ -221,11 +230,10 @@ void SyntaxAnalyzer::PrintFunction()
 {
 	Next();
 	ExpectString("(");
-	Next();
-	
 	do
 	{
-		if (_lexems->type == literal)
+		Next();
+		if (IsLiteral())
 		{
 			Next();
 		}
@@ -233,7 +241,7 @@ void SyntaxAnalyzer::PrintFunction()
 		{
 			Statement();
 		}
-	} while (!strcmp(_lexems->word, ","));
+	} while (!cmpstr(_lexems->word, ","));
 	
 	ExpectString(")");
 	Next();
@@ -253,7 +261,7 @@ void SyntaxAnalyzer::ControlFunctions()
 
 void SyntaxAnalyzer::Analyze(lexem_list* lexems)
 {
-	if (lexems == NULL)
+	if (lexems == 0)
 		return;
 	
 	_lexems = lexems;
