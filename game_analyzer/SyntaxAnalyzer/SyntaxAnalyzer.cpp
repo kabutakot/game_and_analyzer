@@ -1,9 +1,6 @@
 
 #include "SyntaxAnalyzer.h"
 
-//#include <cstring>
-
-
 const char * const SyntaxAnalyzer::_control_keywords[] = { "if", "while" };
 const char * const SyntaxAnalyzer::_functions_0p[] = { "info", "turn" };
 const char * const SyntaxAnalyzer::_functions_1p[] = { "player", "prod", "build" };
@@ -12,7 +9,7 @@ const char * SyntaxAnalyzer::_function_print = "print";
 
 const char * const SyntaxAnalyzer::_assign[] = { "=" };
 const char * const SyntaxAnalyzer::_binary_operators[] = { ">", "<", "+", "-", "*", "/", "&", "|" };
-const char * const SyntaxAnalyzer::_unary_operators[] = { "=", "-", "!" };
+const char * const SyntaxAnalyzer::_unary_operators[] = { "+", "-", "!" };
 const char * const SyntaxAnalyzer::_delims[] = { ")", ";", "," };
 
 const char   SyntaxAnalyzer::_identifiers[] = { '$', '?' };
