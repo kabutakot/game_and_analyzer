@@ -4,12 +4,8 @@
 #include <sys/epoll.h>
 #include <fcntl.h>
 #include <netinet/tcp.h>
-#include "Shared/Common/cppformat/format.h"
-#include "Common/utils.h"
-#include "Shared/Dump/BinaryDumper.h"
+#include <vector>
 
-//Interfaces
-#include "SimpleEfViUdpSender.h"
 
 class TcpMarketDataServer
 {
@@ -56,13 +52,11 @@ class TcpMarketDataServer
 	std::string _message_remainder;
 	int _epoll_fd;
 
-	SimpleEfViUdpSender* _udp_sender;
 	std::vector<std::string> _stored_packets;
 	std::vector<std::string> _fpga_packets;
 	int send_count = 0, recv_count = 0;
 	ServerState _current_state = ServerState::WAITING;
 
-	std::chrono::time_point<std::chrono::system_clock> _sent, _got;
 
 	void SetNonBlocking (int fd);
 	void ShutDown();
@@ -76,8 +70,6 @@ class TcpMarketDataServer
 public:
 	TcpMarketDataServer();
 	void Init(std::string& addr, int port);
-	void RunPreambles(uint64_t limit = std::numeric_limits<uint64_t>::max());
-	void SetUdpSender (SimpleEfViUdpSender* sender) { _udp_sender = sender; }
 	void SendMessage(int fd, std::string& msg);
 	void Run();
 	~TcpMarketDataServer();
