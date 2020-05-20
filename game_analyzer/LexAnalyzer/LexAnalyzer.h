@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/types.h>
-#include "shared.h"
+#include "Shared/shared.h"
 
 enum lexem
 {

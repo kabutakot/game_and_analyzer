@@ -9,9 +9,10 @@
 #include <signal.h>
 #include <time.h>
 #include "LexAnalyzer/LexAnalyzer.h"
-#include "shared.h"
+#include "Shared/shared.h"
 #include "SyntaxAnalyzer/SyntaxAnalyzer.h"
 #include "RpnMaker/RpnMaker.h"
+#include "RpnItems/RpnItems.h"
 
 //#define INBUFSIZE 1024
 //#define FINISH 0
@@ -1699,6 +1700,7 @@ void start(int fd) {
 
 	SyntaxAnalyzer syntax;
 	syntax.Analyze(data);
+	syntax.PrintRpn();
 }
 
 int main(int argc, char **argv)

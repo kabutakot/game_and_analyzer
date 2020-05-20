@@ -70,6 +70,8 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="RpnItems\Invoker.h" />
+    <ClInclude Include="RpnItems\RpnItems.h" />
     <ClInclude Include="RpnMaker\Items.h" />
     <ClInclude Include="RpnMaker\RpnMaker.h" />
     <ClInclude Include="Shared\shared.h" />
@@ -85,6 +87,7 @@
   <ItemGroup>
     <ClCompile Include="game_analyzer.cpp" />
     <ClCompile Include="LexAnalyzer\LexAnalyzer.cpp" />
+    <ClCompile Include="RpnItems\Invoker.cpp" />
     <ClCompile Include="RpnMaker\RpnMaker.cpp" />
     <ClCompile Include="Shared\shared.cpp" />
     <ClCompile Include="SyntaxAnalyzer\SyntaxAnalyzer.cpp" />

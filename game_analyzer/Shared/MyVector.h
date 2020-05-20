@@ -3,6 +3,9 @@
 #include <cstring>
 #include <cstdlib>
 
+
+//This class uses memcpy for copying
+//USE ONLY WITH TRIVIAL (eligible for bit copying) TYPES!!!
 template <typename T>
 class MyVector
 {
@@ -99,13 +102,13 @@ public:
 			T* new_arr = new T[new_size];
 			memcpy(new_arr, _arr, _max_size * sizeof(T));
 			_max_size = new_size;
+			_size = new_size;
 			delete[] _arr;
 			_arr = new_arr;
 		}
 		else if (new_size < _max_size)
 		{
-			_max_size = new_size;
-			_size = _size > new_size ? new_size : _size;
+			_size = new_size;
 		}
 	}
 
@@ -118,12 +121,35 @@ public:
 	{
 		qsort(_arr, _size, sizeof(T), compar);
 	}
+
+	void pop_last_amount_into(int amount, MyVector<T>& other)
+	{
+		other.resize(amount);
+		memcpy(other._arr, &_arr[_size - amount], sizeof(T) * amount);
+	}
 	
 	virtual ~MyVector()
 	{
-		delete[] _arr;
+		if (_max_size > 0)
+			delete[] _arr;
 	}
 };
 
 template<typename T>
-const int MyVector<T>::kInitialElements = 20;
+const int MyVector<T>::kInitialElements = 0;
+
+//
+//template<typename T>
+//class MyVector<T*> : public MyVector<T>
+//{
+//public:
+//	virtual ~MyVector()
+//	{
+//		printf("Called destructor for pointer spec\n");
+//		for (int i = 0; i < this->size(); i++)
+//		{
+//			delete (*this)[i];
+//		}
+//		delete[] this->get();
+//	}
+//};
