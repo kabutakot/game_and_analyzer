@@ -72,7 +72,6 @@
   <ItemGroup>
     <ClInclude Include="RpnItems\Invoker.h" />
     <ClInclude Include="RpnItems\RpnItems.h" />
-    <ClInclude Include="RpnMaker\Items.h" />
     <ClInclude Include="RpnMaker\RpnMaker.h" />
     <ClInclude Include="Shared\shared.h" />
     <ClInclude Include="ErrorException.h" />
