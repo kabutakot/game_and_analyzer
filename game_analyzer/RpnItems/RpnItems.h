@@ -1,4 +1,5 @@
 #pragma once
+#include <cassert>
 #include <cstdlib>
 #include "Shared/shared.h"
 #include <cstdio>
@@ -25,8 +26,8 @@ public:
 class RpnOperand : public RpnItem
 {
 public:
+	virtual int GetValue() { assert(false); return 0; }
 	RpnOperand(Functionality type) : RpnItem(type) {}
-
 
 };
 
@@ -69,8 +70,9 @@ public:
 		memcpy(_label, label, lenstr(label));
 	}
 
-	int& GetValue() { return _ref; }
-
+	int& GetAssignValue() { return _ref; }
+	virtual int GetValue() { return _ref; }
+	
 	void Print()
 	{
 		printf("%s", _label);
@@ -96,10 +98,11 @@ public:
 class RpnLiteral : public RpnOperand
 {
 	char _value[80];
+	
 public:
 	RpnLiteral(const char * value) : RpnOperand(LITERAL) { memcpy(_value, value, lenstr(value)); }
 
-	const char * GetValue() { return _value; }
+	const char * GetStringValue() { return _value; }
 
 	void Print()
 	{
