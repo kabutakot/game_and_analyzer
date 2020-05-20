@@ -1,7 +1,5 @@
 
 #include "SyntaxAnalyzer.h"
-//#include <cstring>
-
 
 const char * const SyntaxAnalyzer::_control_keywords[] = { "if", "while" };
 const char * const SyntaxAnalyzer::_functions_0p[] = { "info", "turn" };
@@ -294,16 +292,16 @@ void SyntaxAnalyzer::PrintFunction()
 	Next();
 }
 
-void SyntaxAnalyzer::ControlFunctions()
-{
-	Next();
-	ExpectString("(");
-	Next();
-	Statement();
-	ExpectString(")");
-	Next();
-	Block();
-}
+//void SyntaxAnalyzer::ControlFunctions()
+//{
+//	Next();
+//	ExpectString("(");
+//	Next();
+//	Statement();
+//	ExpectString(")");
+//	Next();
+//	Block();
+//}
 
 void SyntaxAnalyzer::If()
 {
@@ -335,7 +333,7 @@ void SyntaxAnalyzer::While()
 	Next();
 	Block();
 	AddConstant(pos1);
-	AddGoto(true);
+	AddGoto(false);
 	static_cast<RpnConstant*>(_rpn_items[pos2])->SetValue(_rpn_items_index);
 }
 

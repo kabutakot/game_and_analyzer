@@ -1651,7 +1651,6 @@ void  Print_lex_list(lexem_list *first)
 	lex = first;
 	while (lex) {
 		fprintf(stderr, "%i  ", lex->line);
-//		fprintf(stderr, "%s ", lex->word);
 		switch (lex->type) {
 		case keyword:
 			Print_no_liter(lex);
@@ -1695,7 +1694,7 @@ void start(int fd) {
 	Print_lex_list(data);
 	if (!R.at_home()) {
 		fprintf(stderr, "Automat was not returned to <Home>\n");
-		//throw "Error!!";
+		throw "Error!!!";
 	}
 
 	SyntaxAnalyzer syntax;
@@ -1726,7 +1725,7 @@ int main(int argc, char **argv)
 	}
 	catch (const char * s)
 	{
-		fprintf(stderr, "%c", s);
+		fprintf(stderr, "%s", s);
 	}
 	close(fd);
 	return 0;
