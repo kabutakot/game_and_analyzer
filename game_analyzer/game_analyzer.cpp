@@ -11,6 +11,7 @@
 #include "LexAnalyzer/LexAnalyzer.h"
 #include "shared.h"
 #include "SyntaxAnalyzer/SyntaxAnalyzer.h"
+#include "RpnMaker/RpnMaker.h"
 
 //#define INBUFSIZE 1024
 //#define FINISH 0
