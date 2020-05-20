@@ -1700,6 +1700,10 @@ void start(int fd) {
 	SyntaxAnalyzer syntax;
 	syntax.Analyze(data);
 	syntax.PrintRpn();
+
+	RpnMaker rpn_maker;
+	rpn_maker.SetRpnItems(syntax.GetRpn(), syntax.GetRpnAmount());
+	rpn_maker.ExecuteRpn();
 }
 
 int main(int argc, char **argv)

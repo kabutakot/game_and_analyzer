@@ -4,7 +4,7 @@
 #include <cstdio>
 #include <cstring>
 
-enum Functionality {CONSTANT = 0, VARIABLE/*, WRITE_VARIABLE*/, LITERAL, OPERATION, SIZE};
+enum Functionality {CONSTANT = 0, VARIABLE, GOTO, LITERAL, OPERATION, SIZE};
 
 
 class RpnItem
@@ -34,7 +34,7 @@ class RpnGoto : public RpnItem
 {
 	bool _if_false;
 public:
-	RpnGoto(bool if_false) : RpnItem(OPERATION), _if_false(if_false) {}
+	RpnGoto(bool if_false) : RpnItem(GOTO), _if_false(if_false) {}
 	bool GetIfFalse() { return _if_false; }
 
 	void Print()
@@ -97,7 +97,7 @@ class RpnLiteral : public RpnOperand
 {
 	char _value[80];
 public:
-	RpnLiteral(const char * value, int size) : RpnOperand(LITERAL) { memcpy(_value, value, size); }
+	RpnLiteral(const char * value) : RpnOperand(LITERAL) { memcpy(_value, value, lenstr(value)); }
 
 	const char * GetValue() { return _value; }
 
@@ -128,7 +128,8 @@ public:
 	const Operation& GetOp() { return _op; }
 	int GetAmount() { return _amount; }
 	RpnOperand* Invoke ( RpnOperand** params, int amount) { return _op.func_impl(params, amount); }
-
+	bool HasResult() { return _has_return; }
+	
 	void Print()
 	{
 		printf("%s", _op.label);

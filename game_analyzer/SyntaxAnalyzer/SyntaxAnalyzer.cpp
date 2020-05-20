@@ -342,9 +342,9 @@ void SyntaxAnalyzer::AddVariable(const char* label)
 {
 	int index = -1;
 
-	for (int i = 0; i < _var_table_index; i++)
+	for (int i = 0; i < VarTable::_var_table_index; i++)
 	{
-		if (!cmpstr(_var_table_names[i], label))
+		if (!cmpstr(VarTable::_var_table_names[i], label))
 		{
 			index = i;
 			break;
@@ -353,14 +353,14 @@ void SyntaxAnalyzer::AddVariable(const char* label)
 
 	if (index != -1)
 	{
-		_rpn_items[_rpn_items_index++] = new RpnVar(_var_table[index], label);
+		_rpn_items[_rpn_items_index++] = new RpnVar(VarTable::_var_table[index], label);
 	}
 	else
 	{
-		_var_table[_var_table_index] = 0;
-		memcpy(&_var_table_names[_var_table_index], label, lenstr(label));
-		_rpn_items[_rpn_items_index++] = new RpnVar(_var_table[_var_table_index], label);
-		_var_table_index++;
+		VarTable::_var_table[VarTable::_var_table_index] = 0;
+		memcpy(&VarTable::_var_table_names[VarTable::_var_table_index], label, lenstr(label));
+		_rpn_items[_rpn_items_index++] = new RpnVar(VarTable::_var_table[VarTable::_var_table_index], label);
+		VarTable::_var_table_index++;
 	}
 }
 
@@ -409,7 +409,7 @@ void SyntaxAnalyzer::AddConstant(int value)
 
 void SyntaxAnalyzer::AddLiteral(const char* label)
 {
-	_rpn_items[_rpn_items_index++] = new RpnLiteral(label, lenstr(label));
+	_rpn_items[_rpn_items_index++] = new RpnLiteral(label);
 }
 
 void SyntaxAnalyzer::AddGoto(bool if_false)

@@ -79,6 +79,7 @@
     <ClInclude Include="Shared\MyString.h" />
     <ClInclude Include="Shared\MyVector.h" />
     <ClInclude Include="SyntaxAnalyzer\SyntaxAnalyzer.h" />
+    <ClInclude Include="SyntaxAnalyzer\VarTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
@@ -90,6 +91,7 @@
     <ClCompile Include="RpnMaker\RpnMaker.cpp" />
     <ClCompile Include="Shared\shared.cpp" />
     <ClCompile Include="SyntaxAnalyzer\SyntaxAnalyzer.cpp" />
+    <ClCompile Include="SyntaxAnalyzer\VarTable.cpp" />
     <None Include="Makefile" />
     <None Include="debug.mak" />
     <None Include="release.mak" />

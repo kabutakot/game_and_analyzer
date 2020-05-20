@@ -1,12 +1,10 @@
 start
 {
-	$var1 = 15 + (18 + ?prod(0)) * 15;
+	$v1 = 34;
+	$var1 = 15 + (2 * 9) - 34;
 	if ($var1 < 7) 
 	{
 		print ("OOOOPS!!!");
-	}
-	while ($var1 < $var2) {
-		?info();
 	}
 }
 finish

@@ -6,6 +6,7 @@
 #include "RpnItems/RpnItems.h"
 #include "Shared/shared.h"
 #include "RpnItems/Invoker.h"
+#include "VarTable.h"
 
 
 class SyntaxAnalyzer
@@ -14,9 +15,9 @@ class SyntaxAnalyzer
 	lexem_list* _lexems;
 
 	//RPN
-	int _var_table[80];
-	char _var_table_names[80][80];
-	int _var_table_index;
+	//int _var_table[80];
+	//char _var_table_names[80][80];
+	//int _var_table_index;
 	RpnItem* _rpn_items[800];
 	int _rpn_items_index;
 	
@@ -99,7 +100,7 @@ class SyntaxAnalyzer
 	
 	
 public:
-	SyntaxAnalyzer() : _rpn_items_index(0), _var_table_index(0) {}
+	SyntaxAnalyzer() : _rpn_items_index(0) {}
 	void Analyze(lexem_list* lexems);
 
 	void PrintRpn()
@@ -111,12 +112,15 @@ public:
 		}
 		printf("\n");
 
-		for (int i = 0; i <_var_table_index; i++)
+		for (int i = 0; i <VarTable::_var_table_index; i++)
 		{
-			printf("%s %d\n", _var_table_names[i], _var_table[i]);
+			printf("%s %d\n", VarTable::_var_table_names[i], VarTable::_var_table[i]);
 		}
 		printf("\n");
 	}
+
+	RpnItem** GetRpn() { return _rpn_items; }
+	int GetRpnAmount() { return _rpn_items_index; }
 };
 
 
