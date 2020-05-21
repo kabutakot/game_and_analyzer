@@ -9,24 +9,14 @@
 
 class TcpMarketDataServer
 {
-	enum class MessageType : uint16_t {DATA, DATA_FPGA, DATA_FPGA_FINISH, DATA_FPGA_EMPTY, COMMAND, COMMAND_ARRAY};
-	enum class CommandType : uint16_t {STAND_BY, STORE_TCP, RELEASE_UDP, MIRROR_TCP, RELEASE_FPGA_MESS, RELEASE_TCP_MESS};
-	enum class ServerState : uint16_t {WAITING, STORING, MIRRORING};
+	enum class MessageType : uint16_t {AUCTION_INFO, PLAYER_INFO, ACCEPT, ERROR};
+	enum class CommandType : uint16_t {AUCTION_MATERIALS, AUCTION_PROD, PRODUCE, BUILD, END_TURN};
 
 #pragma pack(push, 1)
 	struct DataHeader
 	{
 		MessageType type; //DATA
 		uint16_t length;
-	};
-	struct CommandHeader
-	{
-		MessageType type; //COMMAND
-	};
-	struct CommandArrayHeader
-	{
-		MessageType type; //COMMAND_ARRAY
-		uint16_t array_length;
 	};
 #pragma pack(pop)
 
@@ -38,7 +28,7 @@ class TcpMarketDataServer
 	std::string _bind_address;
 	int _bind_port;
 	int _listen_fd;
-	std::vector <int> _auxiliary_fd;
+	std::vector <int> _accepted_fd;
 	std::string _message_remainder;
 	int _epoll_fd;
 

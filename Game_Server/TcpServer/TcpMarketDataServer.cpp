@@ -37,7 +37,7 @@ void TcpMarketDataServer::SetNonBlocking(int fd)
 
 void TcpMarketDataServer::ShutDown()
 {
-	for (auto& fd : _auxiliary_fd)
+	for (auto& fd : _accepted_fd)
 		close(fd);
 	close (_main_fd);
 	close (_listen_fd);
@@ -110,7 +110,7 @@ void TcpMarketDataServer::RunPreambles(uint64_t limit)
 				}
 				else
 				{
-					_auxiliary_fd.push_back(fd);
+					_accepted_fd.push_back(fd);
 				}
 			}
 			// Готов клиентский дескриптор
@@ -122,9 +122,9 @@ void TcpMarketDataServer::RunPreambles(uint64_t limit)
 				if (events[n].events & EPOLLRDHUP)
 				{
 					std::cout.flush();
-					auto it = std::find(_auxiliary_fd.begin(), _auxiliary_fd.end(), fd);
-					if (it != _auxiliary_fd.end())
-						_auxiliary_fd.erase(it);
+					auto it = std::find(_accepted_fd.begin(), _accepted_fd.end(), fd);
+					if (it != _accepted_fd.end())
+						_accepted_fd.erase(it);
 					close(fd);
 					return;
 				}
@@ -438,7 +438,7 @@ void TcpMarketDataServer::ExecuteCommand(int fd, CommandType command)
 	case CommandType::RELEASE_TCP_MESS:
 	{
 		for (auto& packet : _stored_packets)
-			SendMessage(_auxiliary_fd[0], packet);
+			SendMessage(_accepted_fd[0], packet);
 		_stored_packets.clear();
 		break;
 	}
@@ -514,9 +514,9 @@ void TcpMarketDataServer::Run()
 
 				if (events[n].events & EPOLLRDHUP)
 				{
-					auto it = std::find(_auxiliary_fd.begin(), _auxiliary_fd.end(), fd);
-					if (it != _auxiliary_fd.end())
-						_auxiliary_fd.erase(it);
+					auto it = std::find(_accepted_fd.begin(), _accepted_fd.end(), fd);
+					if (it != _accepted_fd.end())
+						_accepted_fd.erase(it);
 					close(fd);
 					return;
 				}

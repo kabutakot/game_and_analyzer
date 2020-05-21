@@ -39,12 +39,36 @@
     <ClCompile Include="TcpServer\TcpMarketDataServer.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Auction.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Player.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpServer\TcpMarketDataServer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpServer\DataStructures.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Auction.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ActiveRequests.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

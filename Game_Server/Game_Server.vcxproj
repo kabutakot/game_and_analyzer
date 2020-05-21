@@ -70,13 +70,21 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Game\ActiveRequests.h" />
+    <ClInclude Include="Game\Auction.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Game\Player.h" />
+    <ClInclude Include="TcpServer\DataStructures.h" />
     <ClInclude Include="TcpServer\TcpMarketDataServer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
   <ItemGroup>
+    <ClCompile Include="Game\Auction.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Game_Server.cpp" />
+    <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="TcpServer\TcpMarketDataServer.cpp" />
     <None Include="Makefile" />
     <None Include="debug.mak" />
