@@ -36,7 +36,7 @@ class RpnGoto : public RpnItem
 	bool _if_false;
 public:
 	RpnGoto(bool if_false) : RpnItem(GOTO), _if_false(if_false) {}
-	bool GetIfFalse() { return _if_false; }
+	bool IfFalse() { return _if_false; }
 
 	void Print()
 	{
