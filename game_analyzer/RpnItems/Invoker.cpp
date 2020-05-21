@@ -3,16 +3,6 @@
 #include <cassert>
 #include <cstdio>
 
-#include "ErrorException.h"
-
-//
-//void del (RpnOperand** params, int amount)
-//{
-//	for (int i = 0; i < params.size(); i++)
-//	{
-//		delete params[i];
-//	}
-//}
 
 RpnOperand* Invoker::info(RpnOperand** params, int amount)
 {
