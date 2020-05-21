@@ -72,6 +72,7 @@ public:
 
 	int& GetAssignValue() { return _ref; }
 	virtual int GetValue() { return _ref; }
+	const char* GetLabel() { return _label; }
 	
 	void Print()
 	{

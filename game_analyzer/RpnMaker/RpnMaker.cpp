@@ -10,7 +10,7 @@ void RpnMaker::ExecuteRpn()
 		case VARIABLE:
 			{
 				RpnVar* var = static_cast<RpnVar*>(item);
-				_operand_stack[_operand_stack_index++] = new RpnVar(var->GetAssignValue(), "stack");
+				_operand_stack[_operand_stack_index++] = new RpnVar(var->GetAssignValue(), var->GetLabel());
 				break;
 			}
 		case CONSTANT:
@@ -44,7 +44,7 @@ void RpnMaker::ExecuteRpn()
 		case GOTO:
 			{
 				RpnGoto* var = static_cast<RpnGoto*>(item);
-				if (!var->GetIfFalse())
+				if (!var->IfFalse())
 				{
 					RpnConstant* constant = static_cast<RpnConstant*>(_operand_stack[--_operand_stack_index]);
 					i = constant->GetValue();
